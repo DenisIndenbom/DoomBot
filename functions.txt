@@ -1,0 +1,40 @@
+def demageUpdate():
+    for numbot in range(len(bots)):
+        ng = len( player.gun )
+        if ng >= 1:
+            while True:
+                ng -= 1
+                i = len( player.gun[ng].potron )
+                if i >= 1:
+                    while True:
+                        i -= 1
+                        if bots[numbot].rect.colliderect( player.gun[ng].potron[i].rect ):
+                            bots[numbot].life -= player.gun[ng].potron[i].damage
+                            player.gun[ng].potron.pop( i )
+                        if i == 0:
+                            break
+                if ng == 0:
+                    break
+        i = len( bots[numbot].potron )
+        if i >= 1:
+            while True:
+                i -= 1
+                if player.rect.colliderect( bots[numbot].potron[i].rect ):
+                    player.life -= bots[numbot].potron[i].damage
+                    bots[numbot].potron.pop( i )
+                if i == 0:
+                    break
+def gunupdate():
+    gun1.update( player.state )
+    gun2.update( player.state )
+    gun3.update( player.state )
+def gundraw():
+    for i in range( len( gun1.potron ) ):
+        gun1.potron[i].fire()
+        gun1.potron[i].draw( screen )
+    for i in range( len( gun2.potron ) ):
+        gun2.potron[i].fire()
+        gun2.potron[i].draw( screen )
+    for i in range( len( gun3.potron ) ):
+        gun3.potron[i].fire()
+        gun3.potron[i].draw( screen )
